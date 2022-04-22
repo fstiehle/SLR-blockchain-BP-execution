@@ -6,29 +6,25 @@ library(graphlayouts)
 library(ggraph)
 library(ggplot2)
 
-extraction <- read_csv("Projects/Puffin/SLR Analysis/data/extraction.csv",
-                       col_types = cols(...35 = col_skip(), 
-                                        Year = col_date(format = "%Y"),
-                                        Comments = col_skip()), 
-                       skip = 1) %>%
-  filter(Included == TRUE)
+bibliography <- read_csv("Projects/Puffin/SLR Analysis/SLR_Blockchain_BP_Execution/data/bibliography.csv", 
+                         col_types = cols(`Publication Year` = col_date(format = "%Y")))
 
 colors = c("#724073", "#1E2759", "#124019", "#F2DC6D", "#000000")
 
 # Investigating the publication interest over the years 
 #######################################################
-extraction_years <- extraction %>%
-  select(Year) %>%
-  filter(Year != as.Date("2022-01-01")) %>%
-  count(Year) %>%
+extraction_years <- bibliography %>%
+  select(`Publication Year`) %>%
+  filter(`Publication Year` != as.Date("2022-01-01")) %>%
+  count(`Publication Year`) %>%
   drop_na 
 
-ggplot(extraction_years, aes(x=Year, y=n)) +
-  geom_line(color=colors[1]) +
-  geom_point(color=colors[3], size=3) + 
-  scale_x_date(date_labels = "%Y", breaks = "1 year") +
-  scale_y_continuous(breaks=seq(1,11, by = 1)) +
-  #geom_smooth(method=lm, color=colors[4], se=FALSE, alpha=0.2) +
+ggplot(extraction_years, aes(x=`Publication Year`, y=n)) +
+  geom_line(color=colors[3]) +
+  geom_point(color=colors[1], size=3) + 
+  scale_x_date(date_labels = "%Y", breaks = "1 year", minor_breaks = NULL) +
+  scale_y_continuous(breaks=seq(1,13, by = 1), minor_breaks = NULL) +
+  #geom_smooth(method=lm, color=colors[4], se=TRUE, alpha=0.2) +
   labs(x = "Year", y ="Number")
 
 # Investigating the social network of authors
