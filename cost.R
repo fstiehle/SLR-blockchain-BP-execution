@@ -6,16 +6,17 @@ library(graphlayouts)
 library(ggraph)
 library(ggplot2)
 
-extraction <- read_csv("Projects/Puffin/SLR Analysis/SLR_Blockchain_BP_Execution/data/extraction_cost.csv", 
+extraction <- read_csv("data/cost.csv", 
                             col_types = cols(`Avg. Cost / Instance Ex` = col_number(), 
                                              `One Time Cost` = col_number(),
                                              `Year` = col_date(format = "%Y")), 
                             skip = 1) %>%
-  filter(Included == TRUE)
+  filter(Included == TRUE) %>%
+  filter(Cost == TRUE)
 
-gasprice <- read_csv("Projects/Puffin/SLR Analysis/SLR_Blockchain_BP_Execution/data/gasprice.csv",
+gasprice <- read_csv("data/gasprice.csv",
                      col_types = cols(`Date(UTC)` = col_date(format = "%m/%d/%Y")))
-eth_usd <- read_csv("Projects/Puffin/SLR Analysis/SLR_Blockchain_BP_Execution/data/eth-usd.csv",
+eth_usd <- read_csv("data/eth-usd.csv",
                     col_types = cols(Date = col_date(format = "%Y-%m-%d")))
 
 
@@ -62,9 +63,9 @@ extraction_cost$`Ex Cost ($)` <- extraction_cost$`Ex Cost (Eth)` * extraction_co
 
 # Calculate Ex price in $ today
 eth_usd_today <- eth_usd %>% 
-  filter(Year == "2022")
+  filter(Year == "2021")
 gasprice_today <- gasprice %>% 
-  filter(Year == "2022")
+  filter(Year == "2021")
 extraction_cost$`Ex Cost Today ($)` <- extraction_cost$`Avg. Cost / Instance Ex` * gasprice_today$`Value (Eth)` * eth_usd_today$Open
 
 # Plotting
@@ -86,4 +87,4 @@ ggplot(extraction_cost, aes(x=Date, y=`Ex Cost ($)`)) +
   theme(legend.position = "bottom") +
   xlab(label = 'Publication Year') +
   ylab(label = 'Execution Cost ($)')
-  
+ggsave("cost.pdf", width = 5, height = 4)
