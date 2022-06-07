@@ -12,4 +12,5 @@ A Taxonomy and Systematic Literature Review_ paper, in submission at the BPM 202
 -  **`data/extraction.csv`**: Result of our classification of primary studies in `.csv` format; the classification is according to the dimension of our taxonomy (see our paper). 
 -  **`data/slr.xlsx` and `data/slr.ods`**: Interactive spreadsheet containing each phase of the performed systematic literature review, including the reasoning behind the exclusion of papers. For convenience, we also include a hosted interactive spreadsheet of
 our SLR at https://tubcloud.tu-berlin.de/s/M8JQtaRX5JkjXXZ.
+-  **`data/bibliography.bib` and `data/bibliograph.csv`**: List of our identified and investigated primary studies. 
 -  **`publication_trends.R`**: Script to evaluate the publication trends and author networks, not featured in the paper. 
