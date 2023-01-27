@@ -1,7 +1,7 @@
 # Replication package for _Blockchain for Business Process Enactment: A Taxonomy and Systematic Literature Review_. 
 
 This package contains the data sets and scripts used for the _Blockchain for Business Process Enactment:
-A Taxonomy and Systematic Literature Review_ paper, in submission at the BPM 2022 Blockchain Forum. It contains the classification result in `csv` and each phase of the systematic literature review in `xlsx` and `ods` format. The paper reviews the current state-of the-art in blockchain-based business process enactment.
+A Taxonomy and Systematic Literature Review_ paper, [accepted at the BPM 2022 Blockchain Forum](https://link.springer.com/chapter/10.1007/978-3-031-16168-1_1). It contains the classification result in `csv` and each phase of the systematic literature review in `xlsx` and `ods` format. The paper reviews the current state-of the-art in blockchain-based business process enactment.
 
 ## Content
 
